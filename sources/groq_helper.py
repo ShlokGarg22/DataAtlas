@@ -6,9 +6,17 @@ Uses Groq API to enhance search results and find relevant datasets
 from groq import Groq
 from typing import List, Dict
 import json
+import os
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 
 # Groq API configuration
-GROQ_API_KEY = "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"
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+
+if not GROQ_API_KEY:
+    raise ValueError("GROQ_API_KEY not found in environment variables. Please set it in .env file")
 
 def _get_client():
     """Get or create Groq client"""
